@@ -1,5 +1,5 @@
-# r3f-vite-starter
-A boilerplate to build R3F projects
+# Cleopatra an LLM Powered 3D Virtual Assistant
+A Virtual Assistant that can help you quickly find the items you are looking for online and Compare and tons more!
 
 ```
 yarn
