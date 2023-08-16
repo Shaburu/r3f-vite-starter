@@ -9,6 +9,7 @@ import { useFrame } from '@react-three/fiber';
 import {useControls} from 'leva';
 
 export function Avatar(props) {
+  const {animation} = props;
   const {headFollow, cursorFollow} = useControls({
     headFollow: false,
     cursorFollow: false,
@@ -19,25 +20,35 @@ export function Avatar(props) {
   const { nodes, materials } = useGLTF('models/egyptian.glb')
 
   const {animations : idleAnimation} = useFBX('animations/idle.fbx') 
-  
+  const {animations : talkAnimation} = useFBX('animations/talk.fbx') 
+  const {animations : thankAnimation} = useFBX('animations/thank.fbx') 
+
   idleAnimation[0].name = 'idle';
+  talkAnimation[0].name = 'talk';
+  thankAnimation[0].name = 'thank';
+
 
   console.log(idleAnimation)
-  const {actions} = useAnimations(idleAnimation,group);
+
+  const {actions} = useAnimations([idleAnimation[0],talkAnimation[0],thankAnimation[0]],group);
 
   useFrame((state)=>{
     if(headFollow){
       group.current.getObjectByName('Head').lookAt(state.camera.position);
     }
     if (cursorFollow){
-      const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 0);
-      group.current.getObjectByName('Neck').lookAt(target);
+      const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
+      group.current.getObjectByName('Head').lookAt(target);
+      console.log(target)
     }
   });
 
   useEffect(()=>{
-    actions['idle'].reset().play();
-  },[]);
+    actions[animation].reset().fadeIn(0.5).play();
+    return () => {
+      actions[animation].reset().fadeOut(0.5).stop();
+    }
+  },[animation]);
   
    return (
     <group {...props} ref={group} dispose={null}>
