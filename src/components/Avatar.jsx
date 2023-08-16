@@ -44,15 +44,15 @@ export function Avatar(props) {
   });
 
   useEffect(()=>{
-    actions[animation].reset().fadeIn(0.5).play();
+    actions[animation].reset().fadeIn(0.06).play();
     return () => {
-      actions[animation].reset().fadeOut(0.5).stop();
+      actions[animation].reset().stop();
     }
   },[animation]);
   
    return (
     <group {...props} ref={group} dispose={null}>
-      <group rotation-x={-Math.PI/2}>
+      <group rotation-x={-Math.PI/1.9}>
       <primitive object={nodes.Hips} />
       <skinnedMesh name="Wolf3D_Avatar" geometry={nodes.Wolf3D_Avatar.geometry} material={materials.Wolf3D_Avatar} skeleton={nodes.Wolf3D_Avatar.skeleton} morphTargetDictionary={nodes.Wolf3D_Avatar.morphTargetDictionary} morphTargetInfluences={nodes.Wolf3D_Avatar.morphTargetInfluences} />
     </group>
