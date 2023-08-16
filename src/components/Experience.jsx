@@ -4,7 +4,9 @@ import {useControls} from 'leva';
 import { MeshStandardMaterial } from "three";
 
 export const Experience = () => {
+  const [{ text }, set] = useControls(() => ({ Question: 'ASK YOUR QUESTION' }))
 
+  
   const {animation} = useControls({
     animation: {
       value: 'idle',
@@ -14,6 +16,7 @@ export const Experience = () => {
 
   return (
     <>
+    {/* <input type="text" value={text} onChange={(e) => set({ text: e.target.value })} /> */}
       <OrbitControls />
       <Sky/>
       {/* Lobby IS THE BEST - 
@@ -51,11 +54,12 @@ export const Experience = () => {
         <meshStandardMaterial color='green'/>
       </mesh> */}
 
-
-      <mesh scale={7} rotation-x={-Math.PI*0.5} position-y={-1.1}>
+{/* 
+      {/* <mesh scale={7} rotation-x={-Math.PI*0.5} position-y={-1.1}>
         <planeGeometry/>
         <meshStandardMaterial color='aquamarine'/>
-      </mesh> 
+      </mesh>  */} 
+
     </>
   );
 };
