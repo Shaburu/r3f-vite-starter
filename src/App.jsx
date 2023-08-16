@@ -9,7 +9,9 @@ function App() {
       <ScrollControls>
       <Experience />
       <Scroll html>
-      <h1>CLEOPATRA</h1>
+      <h1 className="text-3xl font-bold underline">
+       Hello world!
+      </h1>
       <input placeholder="TYPE YOUR QUESTION"></input>
       <button>SUBMIT</button>
       </Scroll>
