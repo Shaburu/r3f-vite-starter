@@ -5,8 +5,14 @@ Command: npx gltfjsx@6.2.10 .\public\models\egyptian.glb
 
 import React, { useEffect, useRef } from 'react'
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber';
+import {useControls} from 'leva';
 
 export function Avatar(props) {
+  const {headFollow} = useControls({
+    headFollow: false,
+  });
+
   const group = useRef();
 
   const { nodes, materials } = useGLTF('models/egyptian.glb')
@@ -17,6 +23,13 @@ export function Avatar(props) {
 
   console.log(idleAnimation)
   const {actions} = useAnimations(idleAnimation,group);
+
+  useFrame((state)=>{
+    if(headFollow){
+      group.current.getObjectByName('Head').lookAt(state.camera.position);
+
+    }
+  });
 
   useEffect(()=>{
     actions['idle'].reset().play();
