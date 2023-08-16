@@ -9,8 +9,9 @@ import { useFrame } from '@react-three/fiber';
 import {useControls} from 'leva';
 
 export function Avatar(props) {
-  const {headFollow} = useControls({
+  const {headFollow, cursorFollow} = useControls({
     headFollow: false,
+    cursorFollow: false,
   });
 
   const group = useRef();
@@ -27,7 +28,10 @@ export function Avatar(props) {
   useFrame((state)=>{
     if(headFollow){
       group.current.getObjectByName('Head').lookAt(state.camera.position);
-
+    }
+    if (cursorFollow){
+      const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 0);
+      group.current.getObjectByName('Neck').lookAt(target);
     }
   });
 
