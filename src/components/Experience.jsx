@@ -1,4 +1,4 @@
-import { OrbitControls , Sky, Environment} from "@react-three/drei";
+import { OrbitControls , Sky, Environment, ContactShadows} from "@react-three/drei";
 import { Avatar } from "./Avatar";
 import {useControls} from 'leva';
 import { MeshStandardMaterial } from "three";
@@ -29,12 +29,19 @@ export const Experience = () => {
 10. warehouse */}
       <Environment preset="apartment" />
       <group position-y={-1}>
+      <ContactShadows 
+      opacity={0.5} 
+      scale={10} 
+      blur={1} 
+      far={10} 
+      resolution={256} 
+      color="#000000" />
         <Avatar animation={animation}/>
       </group>
-      {animation === 'thank' &&(
+      {animation === 'talk' &&(
         <mesh scale={0.1}  rotation-x={-Math.PI*0.5} position-z={-0.25} position-y={0.90}>
       <torusKnotGeometry/>
-      <meshStandardMaterial color='transparent'/>
+      <meshStandardMaterial color='hotpink'/>
     </mesh>
       )}
 
@@ -44,9 +51,10 @@ export const Experience = () => {
         <meshStandardMaterial color='green'/>
       </mesh> */}
 
-      <mesh scale={7} rotation-x={-Math.PI*0.5} position-y={-0.99}>
+
+      <mesh scale={7} rotation-x={-Math.PI*0.5} position-y={-1.1}>
         <planeGeometry/>
-        <meshStandardMaterial color='cyan'/>
+        <meshStandardMaterial color='aquamarine'/>
       </mesh> 
     </>
   );
