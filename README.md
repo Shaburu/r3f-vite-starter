@@ -6,3 +6,7 @@ A Virtual Assistant that can help you quickly find the items you are looking for
     <img src="https://github.com/Shaburu/r3f-vite-starter/assets/67481819/c2f98144-9907-4781-b28b-015b5b1b5a2e">
 
 </p>
+
+```
+The Code has been Redacted due to Leaked API Key
+```
